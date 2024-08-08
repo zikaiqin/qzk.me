@@ -1,0 +1,9 @@
+/* Variable font */
+@font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    font-weight: 100 900;
+    font-style: oblique -90deg 90deg;
+    src:
+        url('/assets/Inter.woff2') format('woff2');
+}

@@ -1,0 +1,206 @@
+@import url('/styles/font.css');
+@import url('/styles/normalize.css');
+
+/* define variables */
+:root {
+    --rem: 20px;
+    --font-size: var(--rem);
+    --font-weight-normal: 350;
+    --font-weight-medium: 550;
+    --font-weight-heavy: 750;
+    --font-family: 'Inter', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+    --spacer: 1rem;
+    --side-margin: 1rem;
+    --transition-short: 150ms;
+    --max-content-width: 1440px;
+
+    /* prevent bottom clipping on mobile */
+    --max-height: 100svh;
+
+    --color: #fcfcfc;
+    --background-color: #101010;
+    --scroll-color: #fff2;
+    --hover-color: color-mix(in srgb, var(--color) 75%, var(--background-color));
+
+    /* compensate for scrollbar on desktop */
+    @media (any-pointer: fine) {
+        --side-margin: 1.5rem;
+    }
+}
+
+/* set styles */
+:root {
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-normal);
+    color: var(--color);
+    background-color: var(--background-color);
+    max-height: var(--max-height);
+
+    /* scrollbar */
+    @media not all and (any-pointer: fine) {
+        /* mobile: hide scrollbar */
+        /* Chrome, Firefox */
+        @supports (scrollbar-width: auto) {
+            scrollbar-width: none;
+        }
+        /* Safari */
+        @supports selector(::-webkit-scrollbar) and (not (scrollbar-width: auto)) {
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+    @media (any-pointer: fine) {
+        /* desktop: compensate for scrollbar width */
+        width: 100vw;
+        overflow-x: hidden;
+        /* Chrome, Firefox */
+        @supports (scrollbar-color: auto) {
+            scrollbar-color: var(--scroll-color) transparent;
+        }
+        /* Safari */
+        @supports selector(::-webkit-scrollbar) and (not (scrollbar-color: auto)) {
+            ::-webkit-scrollbar {
+                background-color: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                background-color: var(--scroll-color);
+            }
+        }
+    }
+}
+
+header {
+    top: 0;
+    position: sticky;
+    background-color: var(--background-color);
+}
+
+nav {
+    padding-top: var(--spacer);
+    padding-bottom: var(--spacer);
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        display: flex;
+        align-items: center;
+    }
+    & li {
+        display: inline-block;
+        margin-left: var(--spacer);
+        &:first-of-type {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}
+
+main {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+b, strong {
+	font-weight: var(--font-weight-heavy);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1em 0;
+    font-weight: var(--font-weight-heavy);
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.05;
+}
+
+h3 {
+    font-size: 2rem;
+    line-height: 1.075;
+}
+
+h4 {
+    font-size: 1.5rem;
+    line-height: 1.1;
+}
+
+h5 {
+    font-size: 1.25rem;
+    line-height: 1.12;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+a:any-link {
+    color: var(--color);
+    transition: color var(--transition-short);
+    &:hover {
+        color: var(--hover-color);
+        cursor: pointer;
+    }
+    nav & {
+        text-decoration: none;
+    }
+    &:not(nav &) {
+        text-decoration: underline;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: calc(var(--max-content-width) + 2 * var(--side-margin));
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--side-margin);
+    padding-right: var(--side-margin);
+}
+
+.logo {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.vert-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.stretch {
+    flex: 1 1;
+}
+
+.sandwich {
+    *:has(+ &), & + * {
+        /* styles for prev and next sibling */
+    }
+}
+
+.loud-notice {
+    --side-offset: max(var(--side-margin), calc((100svw - var(--max-content-width)) / 2));
+    z-index: -1000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--side-offset);
+    right: var(--side-offset);
+    display: flex;
+    & > h1 {
+        text-align: center;
+        font-size: clamp(3rem, 18svw, 9rem);
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 100%;
+    }
+}
