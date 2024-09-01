@@ -125,15 +125,18 @@ header {
 }
 
 footer {
+    --spacer: 0.75rem;
     margin-top: auto;
-}
-footer > p {
-    margin-top: var(--spacer);
-    margin-bottom: 0;
-    padding: var(--spacer) 0;
-    border-top: 2px solid var(--color);
-    line-height: var(--compact-line-height);
-    text-align: center;
+    * {
+        margin: 0;
+    }
+    & > :first-child {
+        margin-top: var(--spacer);
+        padding: var(--spacer) 0;
+        border-top: 2px solid var(--color);
+        line-height: var(--line-height);
+        text-align: center;
+    }
 }
 
 section {

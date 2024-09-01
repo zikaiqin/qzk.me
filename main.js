@@ -1,5 +1,3 @@
-import { debounce, throttle } from "lodash-es";
-
 // Run main once content loaded
 document.addEventListener('DOMContentLoaded', main);
 
@@ -25,7 +23,7 @@ function main() {
     });
 
     // Inject build date
-    buildDate();
+    injectDate();
 }
 
 function bindNavLinks(sections) {
@@ -49,14 +47,20 @@ function onHashChange(sections, oldHash) {
     }
 }
 
-function buildDate() {
+function injectDate() {
     let dateStr;
     try {
         dateStr = __BUILD_DATE__.split('T')[0];
     } catch {
-        console.log('oops');
         return;
     }
-    const dateEl = document.getElementById('date');
-    dateEl.textContent = dateStr;
+    const dateEl = document.getElementById('update');
+    dateEl.textContent = `Last update: ${dateStr}`;
+
+    const copyEl = document.getElementById('copy');
+    const pubYear = copyEl.textContent;
+    const curYear = dateStr.split('-')[0];
+    if (pubYear !== curYear) {
+        copyEl.textContent = `${pubYear}-${curYear}`;
+    }
 }
