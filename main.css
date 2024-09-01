@@ -1,19 +1,41 @@
-@import url('/styles/font.css');
+@import url('/styles/typeface.css');
 @import url('/styles/normalize.css');
 
 /* define variables */
 :root {
-    --rem: 20px;
-    --font-size: var(--rem);
-    --font-weight-normal: 350;
-    --font-weight-medium: 550;
-    --font-weight-heavy: 750;
-    --font-family: 'Inter', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    /* base length */
+    --rem: 24px;
 
+    --font-weight-light: 350;
+    --font-weight-normal: 450;
+    --font-weight-heavy: 700;
+    --font-family: 'Inter', sans-serif, emoji;
+    --font-feature-settings: 'cv01';
+
+    /* typeface stuff */
+    --ff-upm: 2048;
+    --ff-cap-height: 1490;
+    --ff-ascender: 1984;
+    --ff-descender: 494;
+
+    --compact-line-height: calc(var(--ff-cap-height) / (var(--ff-upm)));
+    --line-height: calc(2 * var(--compact-line-height));
+
+    /* miscellaneous lengths */
     --spacer: 1rem;
+    --transition: 150ms;
+    --transition-slow: 300ms;
+    --transition-fast: 30ms;
+    --max-content-width: 1140px;
+
+    --header-margin: 0.5em;
+    --ul-padding: 1em;
+
+    --nav-gutter: 2rem;
+    --nav-height: calc((2 + var(--compact-line-height)) * 1rem + 2px);
+
     --side-margin: 1rem;
-    --transition-short: 150ms;
-    --max-content-width: 1440px;
+    --section-margin: 1.5rem;
 
     /* prevent bottom clipping on mobile */
     --max-height: 100svh;
@@ -23,20 +45,44 @@
     --scroll-color: #fff2;
     --hover-color: color-mix(in srgb, var(--color) 75%, var(--background-color));
 
+    --scroll-behavior: smooth;
+
     /* compensate for scrollbar on desktop */
     @media (any-pointer: fine) {
         --side-margin: 1.5rem;
+    }
+
+    /* make text smaller on smaller screens */
+    @media screen and (max-width: 464px) {
+        --rem: 22px;
+    }
+    @media screen and (max-width: 424px) {
+        --rem: 20px;
+    }
+    @media screen and (max-width: 386px) {
+        --rem: 18px;
+    }
+    @media screen and (max-width: 348px) {
+        --rem: 16px;
     }
 }
 
 /* set styles */
 :root {
-    font-size: var(--font-size);
-    font-family: var(--font-family);
+    font-size: var(--rem);
     font-weight: var(--font-weight-normal);
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings);
+    line-height: var(--line-height);
+    text-decoration-thickness: from-font;
+    text-underline-offset: from-font;
+    text-underline-position: from-font;
+
     color: var(--color);
     background-color: var(--background-color);
     max-height: var(--max-height);
+
+    scroll-behavior: var(--scroll-behavior);
 
     /* scrollbar */
     @media not all and (any-pointer: fine) {
@@ -78,79 +124,123 @@ header {
     background-color: var(--background-color);
 }
 
+footer {
+    margin-top: auto;
+}
+footer > p {
+    margin-top: var(--spacer);
+    margin-bottom: 0;
+    padding: var(--spacer) 0;
+    border-top: 2px solid var(--color);
+    line-height: var(--compact-line-height);
+    text-align: center;
+}
+
+section {
+    margin: var(--section-margin) 0;
+    scroll-margin-top: calc(var(--section-margin) + var(--nav-height));
+}
+
 nav {
-    padding-top: var(--spacer);
-    padding-bottom: var(--spacer);
-    & ul {
+    line-height: var(--compact-line-height);
+    *, ::before, ::after {
+        display: inline-block;
+    }
+    ul {
         list-style: none;
-        padding: 0;
         margin: 0;
+        padding: var(--spacer) 0;
+        border-bottom: 2px solid var(--color);
 
         display: flex;
         align-items: center;
+        justify-content: center;
     }
-    & li {
-        display: inline-block;
-        margin-left: var(--spacer);
-        &:first-of-type {
-            margin-left: 0;
-            margin-right: auto;
-        }
+    li:not(:first-of-type)::before {
+        width: var(--nav-gutter);
+        text-align: center;
+        content: "\2044";
     }
 }
 
-main {
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
-b, strong {
-	font-weight: var(--font-weight-heavy);
+ul {
+    padding-inline-start: var(--ul-padding);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin: 1em 0;
+    margin: var(--header-margin) 0;
     font-weight: var(--font-weight-heavy);
+    font-size: var(--header-font-size);
 }
 
 h1 {
-    font-size: 4rem;
-    line-height: 1;
+    --header-font-size: 3rem;
 }
 
 h2 {
-    font-size: 3rem;
-    line-height: 1.05;
+    --header-font-size: 2rem;
 }
 
 h3 {
-    font-size: 2rem;
-    line-height: 1.075;
+    --header-font-size: 1.5rem;
 }
 
 h4 {
-    font-size: 1.5rem;
-    line-height: 1.1;
+    --header-font-size: 1.25rem;
 }
 
 h5 {
-    font-size: 1.25rem;
-    line-height: 1.12;
+    --header-font-size: 1.125rem;
 }
 
 h6 {
-    font-size: 1rem;
+    --header-font-size: 1rem;
+}
+
+small {
+    font-weight: var(--font-weight-light);
+    font-size: 0.75em;
+}
+
+sup, sub {
+    font-size: inherit;
+    vertical-align: baseline;
+}
+sup {
+    font-feature-settings: var(--font-feature-settings), "sups";
+}
+sub {
+    font-feature-settings: var(--font-feature-settings), "subs";
+}
+
+em, i {
+    font-style: italic;
+}
+
+b, strong {
+    font-weight: var(--font-weight-heavy);
 }
 
 a:any-link {
     color: var(--color);
-    transition: color var(--transition-short);
+    transition: color var(--transition), font-weight var(--transition-fast);
     &:hover {
         color: var(--hover-color);
         cursor: pointer;
     }
     nav & {
         text-decoration: none;
+        font-style: italic;
+        &[aria-current="page"] {
+            font-weight: var(--font-weight-heavy);
+            pointer-events: none;
+            cursor: default;
+        }
+        @media not all and (any-pointer: fine) {
+            &:hover {
+                color: var(--color);
+            }
+        }
     }
     &:not(nav &) {
         text-decoration: underline;
@@ -166,10 +256,8 @@ a:any-link {
     padding-right: var(--side-margin);
 }
 
-.logo {
-    font-size: clamp(1.5rem, 5vw, 2rem);
-    font-weight: 900;
-    line-height: 1.2;
+.full-height {
+    min-height: 100svh;
 }
 
 .vert-flex {
@@ -196,9 +284,11 @@ a:any-link {
     left: var(--side-offset);
     right: var(--side-offset);
     display: flex;
+    text-transform: uppercase;
     & > h1 {
         text-align: center;
         font-size: clamp(3rem, 18svw, 9rem);
+        font-style: italic;
         margin-top: auto;
         margin-bottom: auto;
         width: 100%;
