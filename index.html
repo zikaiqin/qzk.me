@@ -7,25 +7,63 @@
         <link rel="stylesheet" href="/main.css">
         <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     </head>
-    <body>
+    <body class="full-height vert-flex">
         <header>
             <nav class="container">
                 <ul>
-                    <li><a href="/">
-                        <em class="logo">QZK.ME</em>
+                    <li><a href="/#about" id="nav-about">
+                        About
                     </a></li>
-                    <li><a href="mailto:hello@qzk.me">
-                        CONTACT
+                    <li><a href="/#works" id="nav-works">
+                        Works
+                    </a></li>
+                    <li><a href="/#contact" id="nav-contact">
+                        Contact
                     </a></li>
                 </ul>
             </nav>
         </header>
         <main class="container">
-            <section class="loud-notice">
-                <h1>COMING SOON</h1>
+            <section id="about">
+                <h1>
+                    Hello
+                </h1>
+                <p>
+                    My name is <b>Zi Kai Qin</b>, and I'm a web developer.
+                </p>
+            </section>
+            <section id="works">
+                <h1>
+                    Stuff I made
+                </h1>
+                <p>
+                    This website is still under construction, so it doesn't yet have any cool doodads that you can look at or fiddle with.
+                    <br><br>
+                    For now, if you're fluent in gibberish, you can <a href="https://github.com/zikaiqin?tab=repositories">check out some of my projects on GitHub</a>.
+                </p>
+            </section>
+            <section id="contact">
+                <h1>
+                    Get in touch
+                </h1>
+                <p>
+                    If you would like to contact me, you can:
+                </p>
+                <ul>
+                    <li>
+                        <a href="mailto:hello@qzk.me" id="email">Send me an email</a> at <b>hello@qzk.me</b>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/zikaiqin/" id="in">Message me on LinkedIn</a>
+                    </li>
+                </ul>
             </section>
         </main>
-        <footer></footer>
+        <footer class="container">
+            <p>
+                <small>Last updated on: <span id="date"></span></small>
+            </p>
+        </footer>
         <script type="module" src="/main.js"></script>
     </body>
 </html>
