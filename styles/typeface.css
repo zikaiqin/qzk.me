@@ -4,6 +4,7 @@
     font-style: normal;
     font-weight: 100 900;
     src:
+        url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.0') format('woff2'),
         url('/assets/InterVariable.woff2') format('woff2');
     font-display: swap;
 }
@@ -14,6 +15,7 @@
     font-style: italic;
     font-weight: 100 900;
     src:
+        url('https://rsms.me/inter/font-files/InterVariable-Italic.woff2?v=4.0') format('woff2'),
         url('/assets/InterVariable-Italic.woff2') format('woff2');
     font-display: swap;
 }
@@ -24,6 +26,7 @@
     font-style: oblique 9.4deg;
     font-weight: 100 900;
     src:
+        url('https://rsms.me/inter/font-files/InterVariable-Italic.woff2?v=4.0') format('woff2'),
         url('/assets/InterVariable-Italic.woff2') format('woff2');
     font-display: swap;
 }

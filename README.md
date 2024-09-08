@@ -32,7 +32,7 @@ Make sure you also install the [npm package manager](https://nodejs.org/en/learn
 
 ## Packages
 
-With Node.js comes a boatload of useful tools called packages. These are bits of code that other people have made, which you can use in your own projects, generally free of charge.
+Node.js is also part of an expansive ecosystem of packages and libraries.
 
 Vite is one such package that is required for this project. To install Vite and other dependencies, open a terminal in this folder and run the following command:
 
