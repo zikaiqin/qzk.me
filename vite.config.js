@@ -2,6 +2,8 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
+console.log(process.env, import.meta.env)
+
 export default defineConfig({
   build: {
     rollupOptions: {
@@ -12,7 +14,6 @@ export default defineConfig({
     },
   },
   define: {
-    __RESUME_URL__: process.env.NODE_ENV === 'production' ? `'${import.meta.env.RESUME_URL}'` : "'#'", 
     __BUILD_DATE__: new Date(),
   }
 })

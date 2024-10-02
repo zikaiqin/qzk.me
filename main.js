@@ -24,9 +24,6 @@ function main() {
 
     // Inject build date
     injectDate();
-
-    // Inject resume link
-    injectLink();
 }
 
 function bindNavLinks(sections) {
@@ -66,9 +63,4 @@ function injectDate() {
     if (pubYear !== curYear) {
         copyEl.textContent = `${pubYear}-${curYear}`;
     }
-}
-
-function injectLink() {
-    const link = document.getElementById('resume-link');
-    link.setAttribute('href', __RESUME_URL__);
 }
